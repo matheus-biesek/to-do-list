@@ -11,7 +11,7 @@ CREATE TABLE app.usuarios (
 );
 
 CREATE TABLE app.tarefas (
-    tarefa_id SERIAL PRIMARY KEY,
+    tarefa_id BIGSERIAL PRIMARY KEY,
     usuario_id UUID NOT NULL REFERENCES app.usuarios(usuario_id) ON DELETE CASCADE,
     titulo VARCHAR(255) NOT NULL,
     descricao TEXT,
@@ -23,8 +23,8 @@ CREATE TABLE app.tarefas (
 );
 
 CREATE TABLE app.subtarefas (
-    subtarefa_id SERIAL PRIMARY KEY,
-    tarefa_id INT NOT NULL REFERENCES app.tarefas(tarefa_id) ON DELETE CASCADE,
+    subtarefa_id BIGSERIAL PRIMARY KEY,
+    tarefa_id BIGINT NOT NULL REFERENCES app.tarefas(tarefa_id) ON DELETE CASCADE,
     titulo VARCHAR(255) NOT NULL,
     status VARCHAR(20) NOT NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -53,6 +53,10 @@ BEFORE UPDATE ON app.subtarefas
 FOR EACH ROW
 EXECUTE FUNCTION app.atualiza_data_atualizacao();
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON app.usuarios TO app_orchestrator;
-GRANT SELECT, INSERT, UPDATE, DELETE ON app.tarefas TO app_orchestrator;
-GRANT SELECT, INSERT, UPDATE, DELETE ON app.subtarefas TO app_orchestrator;
+-- Definir ownership das tabelas e sequências para app_orchestrator
+-- Como owner, o app_orchestrator terá todos os privilégios automaticamente
+ALTER TABLE app.usuarios OWNER TO app_orchestrator;
+ALTER TABLE app.tarefas OWNER TO app_orchestrator;
+ALTER TABLE app.subtarefas OWNER TO app_orchestrator;
+ALTER SEQUENCE app.tarefas_tarefa_id_seq OWNER TO app_orchestrator;
+ALTER SEQUENCE app.subtarefas_subtarefa_id_seq OWNER TO app_orchestrator;
