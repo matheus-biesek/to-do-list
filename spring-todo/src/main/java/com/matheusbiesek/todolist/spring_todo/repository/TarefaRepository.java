@@ -28,6 +28,8 @@ public interface TarefaRepository extends JpaRepository<Tarefa, Long> {
 
     List<Tarefa> findByUsuarioAndDataVencimentoBefore(Usuario usuario, LocalDate data);
 
+    Page<Tarefa> findByUsuarioAndDataVencimentoBefore(Usuario usuario, LocalDate data, Pageable pageable);
+
     @Query("SELECT t FROM Tarefa t WHERE t.usuario = :usuario " +
            "AND (:status IS NULL OR t.status = :status) " +
            "AND (:prioridade IS NULL OR t.prioridade = :prioridade) " +

@@ -58,7 +58,9 @@ public class TarefaService {
     public Page<Tarefa> findByUsuarioWithFilters(Usuario usuario, StatusTarefa status, 
                                                  Prioridade prioridade, LocalDate dataVencimento, Pageable pageable) {
         try {
-            return tarefaRepository.findByUsuarioWithFilters(usuario, status, prioridade, dataVencimento, pageable);
+            Page<Tarefa> tarefas = tarefaRepository.findByUsuarioWithFilters(usuario, status, prioridade, dataVencimento, pageable);
+            tarefas.getContent().forEach(tarefa -> tarefa.getSubtarefas().size());
+            return tarefas;
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar tarefas com filtros paginadas: " + e.getMessage(), e);
         }
@@ -67,7 +69,12 @@ public class TarefaService {
     @Transactional(readOnly = true)
     public Optional<Tarefa> findByIdAndUsuario(Long id, Usuario usuario) {
         try {
-            return tarefaRepository.findByTarefaIdAndUsuario(id, usuario);
+            Optional<Tarefa> tarefaOpt = tarefaRepository.findByTarefaIdAndUsuario(id, usuario);
+            if (tarefaOpt.isPresent()) {
+                Tarefa tarefa = tarefaOpt.get();
+                tarefa.getSubtarefas().size();
+            }
+            return tarefaOpt;
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar tarefa por ID e usuário: " + e.getMessage(), e);
         }
@@ -94,9 +101,22 @@ public class TarefaService {
     @Transactional(readOnly = true)
     public List<Tarefa> findTarefasVencidas(Usuario usuario) {
         try {
-            return tarefaRepository.findByUsuarioAndDataVencimentoBefore(usuario, LocalDate.now());
+            List<Tarefa> tarefas = tarefaRepository.findByUsuarioAndDataVencimentoBefore(usuario, LocalDate.now());
+            tarefas.forEach(tarefa -> tarefa.getSubtarefas().size());
+            return tarefas;
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar tarefas vencidas: " + e.getMessage(), e);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Tarefa> findTarefasVencidas(Usuario usuario, Pageable pageable) {
+        try {
+            Page<Tarefa> tarefas = tarefaRepository.findByUsuarioAndDataVencimentoBefore(usuario, LocalDate.now(), pageable);
+            tarefas.getContent().forEach(tarefa -> tarefa.getSubtarefas().size());
+            return tarefas;
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar tarefas vencidas paginadas: " + e.getMessage(), e);
         }
     }
 
@@ -130,6 +150,7 @@ public class TarefaService {
             }
 
             Tarefa tarefa = tarefaOpt.get();
+            tarefa.getSubtarefas().size();
 
             if (novoStatus == StatusTarefa.CONCLUIDA && hasSubtarefasPendentes(tarefa)) {
                 throw new RuntimeException("Não é possível concluir tarefa com subtarefas pendentes");

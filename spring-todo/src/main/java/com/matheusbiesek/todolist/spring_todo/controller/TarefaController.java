@@ -1,9 +1,7 @@
 package com.matheusbiesek.todolist.spring_todo.controller;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -190,17 +188,31 @@ public class TarefaController {
 
     @GetMapping("/vencidas")
     @Operation(summary = "Listar tarefas vencidas", 
-               description = "Lista todas as tarefas vencidas do usuário autenticado")
-    @ApiResponse(responseCode = "200", description = "Lista de tarefas vencidas")
-    public ResponseEntity<List<TarefaResponse>> listarTarefasVencidas() {
+               description = "Lista todas as tarefas vencidas do usuário autenticado com paginação")
+    @ApiResponse(responseCode = "200", description = "Lista de tarefas vencidas com paginação")
+    public ResponseEntity<Page<TarefaResponse>> listarTarefasVencidas(
+            @Parameter(description = "Número da página (inicia em 0)") 
+            @RequestParam(defaultValue = "0") int page,
+            @Parameter(description = "Tamanho da página") 
+            @RequestParam(defaultValue = "10") int size,
+            @Parameter(description = "Campo para ordenação") 
+            @RequestParam(defaultValue = "criadoEm") String sortBy,
+            @Parameter(description = "Direção da ordenação (ASC ou DESC)") 
+            @RequestParam(defaultValue = "DESC") String sortDir) {
+        
         UUID userId = UserContext.getUserId();
         Usuario usuario = usuarioService.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        List<Tarefa> tarefasVencidas = tarefaService.findTarefasVencidas(usuario);
-        List<TarefaResponse> response = tarefasVencidas.stream()
-                .map(tarefaMapper::toResponse)
-                .collect(Collectors.toList());
+        Sort sort = sortDir.equalsIgnoreCase("DESC") 
+                ? Sort.by(sortBy).descending() 
+                : Sort.by(sortBy).ascending();
+        
+        Pageable pageable = PageRequest.of(page, size, sort);
+        
+        Page<Tarefa> tarefasVencidas = tarefaService.findTarefasVencidas(usuario, pageable);
+        Page<TarefaResponse> response = tarefasVencidas.map(tarefaMapper::toResponse);
+        
         return ResponseEntity.ok(response);
     }
 
