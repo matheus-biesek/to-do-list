@@ -53,8 +53,6 @@ BEFORE UPDATE ON app.subtarefas
 FOR EACH ROW
 EXECUTE FUNCTION app.atualiza_data_atualizacao();
 
--- Definir ownership das tabelas e sequências para app_orchestrator
--- Como owner, o app_orchestrator terá todos os privilégios automaticamente
 ALTER TABLE app.usuarios OWNER TO app_orchestrator;
 ALTER TABLE app.tarefas OWNER TO app_orchestrator;
 ALTER TABLE app.subtarefas OWNER TO app_orchestrator;
