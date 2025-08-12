@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 @RequiredArgsConstructor
@@ -49,6 +51,25 @@ public class TarefaService {
             return tarefaRepository.findByUsuarioWithFilters(usuario, status, prioridade, dataVencimento);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar tarefas com filtros: " + e.getMessage(), e);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Tarefa> findByUsuarioWithFilters(Usuario usuario, StatusTarefa status, 
+                                                 Prioridade prioridade, LocalDate dataVencimento, Pageable pageable) {
+        try {
+            return tarefaRepository.findByUsuarioWithFilters(usuario, status, prioridade, dataVencimento, pageable);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar tarefas com filtros paginadas: " + e.getMessage(), e);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Tarefa> findByIdAndUsuario(Long id, Usuario usuario) {
+        try {
+            return tarefaRepository.findByTarefaIdAndUsuario(id, usuario);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar tarefa por ID e usuário: " + e.getMessage(), e);
         }
     }
 
