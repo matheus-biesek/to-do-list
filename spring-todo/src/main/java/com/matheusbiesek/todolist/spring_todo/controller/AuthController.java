@@ -1,9 +1,9 @@
 package com.matheusbiesek.todolist.spring_todo.controller;
 
-import com.matheusbiesek.todolist.spring_todo.dto.LoginRequest;
-import com.matheusbiesek.todolist.spring_todo.dto.LoginResponse;
-import com.matheusbiesek.todolist.spring_todo.dto.RegisterRequest;
-import com.matheusbiesek.todolist.spring_todo.dto.RegisterResponse;
+import com.matheusbiesek.todolist.spring_todo.dto.auth.LoginRequest;
+import com.matheusbiesek.todolist.spring_todo.dto.auth.LoginResponse;
+import com.matheusbiesek.todolist.spring_todo.dto.auth.RegisterRequest;
+import com.matheusbiesek.todolist.spring_todo.dto.auth.RegisterResponse;
 import com.matheusbiesek.todolist.spring_todo.entity.Usuario;
 import com.matheusbiesek.todolist.spring_todo.repository.UsuarioRepository;
 import com.matheusbiesek.todolist.spring_todo.security.CustomUserDetails;
