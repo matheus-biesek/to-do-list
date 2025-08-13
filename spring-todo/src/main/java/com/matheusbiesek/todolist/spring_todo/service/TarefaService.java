@@ -4,6 +4,7 @@ import com.matheusbiesek.todolist.spring_todo.entity.Tarefa;
 import com.matheusbiesek.todolist.spring_todo.entity.Usuario;
 import com.matheusbiesek.todolist.spring_todo.enums.Prioridade;
 import com.matheusbiesek.todolist.spring_todo.enums.StatusTarefa;
+import com.matheusbiesek.todolist.spring_todo.exception.tarefa.TarefaComSubtarefasPendentesException;
 import com.matheusbiesek.todolist.spring_todo.repository.TarefaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -153,11 +154,13 @@ public class TarefaService {
             tarefa.getSubtarefas().size();
 
             if (novoStatus == StatusTarefa.CONCLUIDA && hasSubtarefasPendentes(tarefa)) {
-                throw new RuntimeException("Não é possível concluir tarefa com subtarefas pendentes");
+                throw new TarefaComSubtarefasPendentesException("Não é possível concluir tarefa com subtarefas pendentes");
             }
 
             tarefa.setStatus(novoStatus);
             return tarefaRepository.save(tarefa);
+        } catch (TarefaComSubtarefasPendentesException e) {
+            throw e;
         } catch (Exception e) {
             throw new RuntimeException("Erro ao atualizar status da tarefa: " + e.getMessage(), e);
         }
