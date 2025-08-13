@@ -245,7 +245,7 @@ curl -X POST http://localhost:8080/api/tarefas/1/anexos \
 - Funções pequenas e focadas
 - Comentários apenas quando necessário
 - Código auto-documentado
-- Testes unitários (estrutura preparada)
+- **Testes unitários** implementados para services
 
 ## 🔒 Segurança
 
@@ -266,11 +266,24 @@ curl -X POST http://localhost:8080/api/tarefas/1/anexos \
 
 ## 🧪 Testes
 
-A estrutura de testes está preparada com:
+O projeto possui testes unitários implementados para os services principais:
+
+### Testes Implementados
+- **TarefaServiceTest** - Testes para `TarefaService`
+  - Teste de criação de tarefa
+  - Teste de busca de tarefas por usuário
+  - Teste de validação de conclusão de tarefa com subtarefas pendentes
+  
+- **SubtarefaServiceTest** - Testes para `SubtarefaService`
+  - Teste de criação de subtarefa
+  - Teste de busca de subtarefas por tarefa
+  - Teste de atualização de status de subtarefa
+
+### Tecnologias de Teste
 - **Spring Boot Test**
 - **JUnit 5**
 - **Mockito** para mocks
-- **TestContainers** para testes de integração
+- **AssertJ** para assertions
 
 ## 🤝 Contribuição
 
