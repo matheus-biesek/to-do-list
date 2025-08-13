@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.matheusbiesek.todolist.spring_todo.dto.ErrorResponse;
+import com.matheusbiesek.todolist.spring_todo.exception.anexo.AnexoNaoEncontradoException;
+import com.matheusbiesek.todolist.spring_todo.exception.anexo.ArquivoVazioException;
 import com.matheusbiesek.todolist.spring_todo.exception.auth.UsuarioNaoEncontradoException;
 import com.matheusbiesek.todolist.spring_todo.exception.subtarefa.SubtarefaNaoEncontradaException;
 import com.matheusbiesek.todolist.spring_todo.exception.tarefa.TarefaComSubtarefasPendentesException;
@@ -55,6 +57,32 @@ public class GlobalExceptionHandler {
         
         ErrorResponse errorResponse = new ErrorResponse(
                 "TAREFA_COM_SUBTAREFAS_PENDENTES",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    @ExceptionHandler(AnexoNaoEncontradoException.class)
+    public ResponseEntity<ErrorResponse> handleAnexoNaoEncontrado(AnexoNaoEncontradoException ex) {
+        log.error("Anexo não encontrado: {}", ex.getMessage());
+        
+        ErrorResponse errorResponse = new ErrorResponse(
+                "ANEXO_NAO_ENCONTRADO",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(ArquivoVazioException.class)
+    public ResponseEntity<ErrorResponse> handleArquivoVazio(ArquivoVazioException ex) {
+        log.error("Arquivo vazio fornecido: {}", ex.getMessage());
+        
+        ErrorResponse errorResponse = new ErrorResponse(
+                "ARQUIVO_VAZIO",
                 ex.getMessage(),
                 LocalDateTime.now()
         );

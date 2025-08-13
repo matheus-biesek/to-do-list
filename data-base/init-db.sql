@@ -31,6 +31,19 @@ CREATE TABLE app.subtarefas (
     atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF EXISTS app.anexos;
+
+CREATE TABLE app.anexos (
+    anexo_id BIGSERIAL PRIMARY KEY,
+    tarefa_id BIGINT NOT NULL REFERENCES app.tarefas(tarefa_id) ON DELETE CASCADE,
+    nome_original VARCHAR(255) NOT NULL,
+    nome_arquivo VARCHAR(255) NOT NULL,
+    tipo_mime VARCHAR(100) NOT NULL,
+    tamanho BIGINT NOT NULL,
+    caminho_arquivo VARCHAR(500) NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE INDEX idx_tarefas_status ON app.tarefas(status);
 CREATE INDEX idx_tarefas_prioridade ON app.tarefas(prioridade);
 CREATE INDEX idx_tarefas_data_vencimento ON app.tarefas(data_vencimento);
@@ -56,5 +69,7 @@ EXECUTE FUNCTION app.atualiza_data_atualizacao();
 ALTER TABLE app.usuarios OWNER TO app_orchestrator;
 ALTER TABLE app.tarefas OWNER TO app_orchestrator;
 ALTER TABLE app.subtarefas OWNER TO app_orchestrator;
+ALTER TABLE app.anexos OWNER TO app_orchestrator;
 ALTER SEQUENCE app.tarefas_tarefa_id_seq OWNER TO app_orchestrator;
 ALTER SEQUENCE app.subtarefas_subtarefa_id_seq OWNER TO app_orchestrator;
+ALTER SEQUENCE app.anexos_anexo_id_seq OWNER TO app_orchestrator;

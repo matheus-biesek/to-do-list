@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.matheusbiesek.todolist.spring_todo.dto.common.StatusUpdateRequest;
 import com.matheusbiesek.todolist.spring_todo.dto.tarefa.TarefaCreateRequest;
@@ -216,25 +215,4 @@ public class TarefaController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/{id}/anexo")
-    @Operation(summary = "Upload de anexo", 
-               description = "Faz upload de um arquivo anexo para uma tarefa")
-    @ApiResponse(responseCode = "200", description = "Anexo enviado com sucesso")
-    @ApiResponse(responseCode = "404", description = "Tarefa não encontrada")
-    public ResponseEntity<String> uploadAnexo(
-            @PathVariable Long id, 
-            @RequestParam("arquivo") MultipartFile arquivo) {
-        
-        UUID userId = UserContext.getUserId();
-        Usuario usuario = usuarioService.findById(userId)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
-        return tarefaService.findByIdAndUsuario(id, usuario)
-                .map(tarefa -> {
-                    // TODO: Implementar lógica de upload de arquivo
-                    String nomeArquivo = arquivo.getOriginalFilename();
-                    return ResponseEntity.ok("Arquivo " + nomeArquivo + " enviado com sucesso para a tarefa " + id);
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
 }
