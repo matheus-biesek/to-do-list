@@ -1,0 +1,1092 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1753393929795
+  modified: 1753393929795
+  description: ""
+collection:
+  - name: java
+    meta:
+      id: fld_d9789de97d4e496884d19fe0e41ded03
+      created: 1752162078286
+      modified: 1752162078286
+      sortKey: -1752162078286
+      description: ""
+    children:
+      - name: java ee
+        meta:
+          id: fld_038c9289a1b1445da5b460240dc92ddc
+          created: 1749153411082
+          modified: 1752162091492
+          sortKey: -1752162086682
+          description: ""
+        children:
+          - name: auth
+            meta:
+              id: fld_349727ec9fd14330ad7316d6b1adea8c
+              created: 1742414879858
+              modified: 1749246185114
+              sortKey: -1749153419159
+              description: ""
+            children:
+              - name: session
+                meta:
+                  id: fld_9ae2135939a04d86b50b7427985b1cf9
+                  created: 1743606835139
+                  modified: 1745637313049
+                  sortKey: -1743606835139
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: CRUD user
+                meta:
+                  id: fld_e303cd4d880b4affba70c8d4a64c517d
+                  created: 1745637347390
+                  modified: 1745637347390
+                  sortKey: -1745637347390
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+            scripts:
+              afterResponse: ""
+              preRequest: ""
+          - name: schedule
+            meta:
+              id: fld_2b1956e78669490186e229566cd99831
+              created: 1746601154078
+              modified: 1749153419114
+              sortKey: -1749153419059
+              description: ""
+            children:
+              - name: room
+                meta:
+                  id: fld_c068d97705ee4f24bf51a37514b51f1f
+                  created: 1747689448203
+                  modified: 1747689448203
+                  sortKey: -1747689448204
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: schedule template
+                meta:
+                  id: fld_f0024fd64d754043bdf971925c020c79
+                  created: 1747695028819
+                  modified: 1747695028819
+                  sortKey: -1747695028819
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: slot time
+                meta:
+                  id: fld_13aa3845f87e4f9d8ddf15f2bf32af28
+                  created: 1747709035187
+                  modified: 1747709035187
+                  sortKey: -1747709035187
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: sppointment
+                meta:
+                  id: fld_22ce022a967244fe9587c20cddbf0978
+                  created: 1747768732994
+                  modified: 1747768732994
+                  sortKey: -1747768732994
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+            scripts:
+              afterResponse: ""
+              preRequest: ""
+        scripts:
+          afterResponse: ""
+          preRequest: ""
+      - name: quarkus
+        meta:
+          id: fld_27941fea59c84cc8b91ca465cd56300f
+          created: 1749153434896
+          modified: 1752162086638
+          sortKey: -1752162086582
+          description: ""
+        children:
+          - name: clinic
+            meta:
+              id: fld_cd5bd0ff53504086b30235f251fcccd1
+              created: 1749153449886
+              modified: 1749153449886
+              sortKey: -1749153449886
+              description: ""
+            children:
+              - name: patient manager
+                meta:
+                  id: fld_e04c30c637ec4ed199f2c883c0c8dfbb
+                  created: 1749239362573
+                  modified: 1749239368803
+                  sortKey: -1749239362573
+                  description: ""
+                children:
+                  - url: http://localhost:8080/patient-manager/create
+                    name: create
+                    meta:
+                      id: req_7109809d9dc147539237b7b2e44edc30
+                      created: 1749153453171
+                      modified: 1749248197031
+                      isPrivate: false
+                      description: ""
+                      sortKey: -1749239372675
+                    method: POST
+                    body:
+                      mimeType: application/json
+                      text: |
+                        {
+                          "password": "SenhaSegura123",
+                          "name": "João da Silva",
+                          "email": "joao.silva@exemplo.com",
+                          "gender": "MALE"
+                        }
+                    headers:
+                      - name: Content-Type
+                        value: application/json
+                      - name: User-Agent
+                        value: insomnia/11.1.0
+                    scripts:
+                      preRequest: ""
+                      afterResponse: ""
+                    settings:
+                      renderRequestBody: true
+                      encodeUrl: true
+                      followRedirects: global
+                      cookies:
+                        send: true
+                        store: true
+                      rebuildPath: true
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: professional manager
+                meta:
+                  id: fld_4c72aede0deb451491201037e6838be2
+                  created: 1749246198342
+                  modified: 1749246198342
+                  sortKey: -1749246198342
+                  description: ""
+                children:
+                  - url: http://localhost:8080/professional-manager/create
+                    name: create
+                    meta:
+                      id: req_3a0e58ab494b449098674f0c94029716
+                      created: 1749246201678
+                      modified: 1749248208446
+                      isPrivate: false
+                      description: ""
+                      sortKey: -1749246201678
+                    method: POST
+                    body:
+                      mimeType: application/json
+                      text: |
+                        {
+                          "password": "SenhaSegura123",
+                          "name": "pedor lima",
+                          "email": "pedro.lima@exemplo.com",
+                          "gender": "MALE"
+                        }
+                    headers:
+                      - name: Content-Type
+                        value: application/json
+                      - name: User-Agent
+                        value: insomnia/11.2.0
+                    scripts:
+                      preRequest: ""
+                      afterResponse: ""
+                    settings:
+                      renderRequestBody: true
+                      encodeUrl: true
+                      followRedirects: global
+                      cookies:
+                        send: true
+                        store: true
+                      rebuildPath: true
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+            scripts:
+              afterResponse: ""
+              preRequest: ""
+        scripts:
+          afterResponse: ""
+          preRequest: ""
+      - name: To Do List
+        meta:
+          id: fld_03ebecbb0e574e509dd563795381661e
+          created: 1754963045619
+          modified: 1754963045619
+          sortKey: -1754963045619
+          description: ""
+        children:
+          - name: Auth
+            meta:
+              id: fld_da3d53912cc646d7808929981ff036fe
+              created: 1754963055990
+              modified: 1754963055990
+              sortKey: -1754963055990
+              description: ""
+            children:
+              - url: http://localhost:8080/api/auth/register
+                name: Register
+                meta:
+                  id: req_0da33931f2ca4681ab2589b4c7a410f4
+                  created: 1754963062732
+                  modified: 1754963193172
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1754963062732
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"nomeUsuario": "usuario123",
+                    	"email": "usuario@email.com",
+                    	"senha": "minhasenha123"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/auth/login
+                name: Login
+                meta:
+                  id: req_b87cc4a725fb49209a280857653dffb4
+                  created: 1754963198936
+                  modified: 1755057531329
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1754963198936
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	"nomeUsuario": "usuario123",
+                    	"senha": "minhasenha123"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/auth/logout
+                name: Logout
+                meta:
+                  id: req_9bd6d5f256c14c54a1b76ae77a9bd997
+                  created: 1754963261852
+                  modified: 1754963559549
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1754963261852
+                method: POST
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Tarefa
+            meta:
+              id: fld_abc66aeb6f7e4e569f227a2a9ead1b62
+              created: 1755026849263
+              modified: 1755026852203
+              sortKey: -1755026849263
+              description: ""
+            children:
+              - url: http://localhost:8080/api/tarefas
+                name: Criar tarefa
+                meta:
+                  id: req_5350dfdf317d4a2192ac89e266bed573
+                  created: 1755026856463
+                  modified: 1755056441503
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755026856463
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                      "titulo": "Implementar documentação",
+                      "descricao": "Implementar documentação em swagger",
+                      "dataVencimento": "2024-12-31",
+                      "status": "PENDENTE",
+                      "prioridade": "ALTA"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/tarefas/1
+                name: Busca tarefa pelo id
+                meta:
+                  id: req_7352ce5901374578b8e6aecb0b0e4d77
+                  created: 1755026995037
+                  modified: 1755027735722
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755026995037
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/tarefas/1
+                name: Atualiza tarefa
+                meta:
+                  id: req_0c220195c1d741f986213642ffbf3083
+                  created: 1755027743374
+                  modified: 1755027880605
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755027743374
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: >-
+                    {
+                      "titulo": "Implementar nova funcionalidade - Atualizada",
+                      "descricao": "Implementar CRUD de tarefas com validações e testes",
+                      "dataVencimento": "2024-12-31",
+                      "status": "EM_PROGRESSO",
+                      "prioridade": "ALTA"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/tarefas
+                name: Buscar tarefas
+                meta:
+                  id: req_f2e71dadfc394c26a48a4f607076d855
+                  created: 1755028020671
+                  modified: 1755048069320
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755028020671
+                method: GET
+                parameters:
+                  - id: pair_2dea8e978bc04b15b4e31d926e96ec7b
+                    name: ""
+                    value: ""
+                    description: ""
+                    disabled: false
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/tarefas/1/status
+                name: Atualiza status da terefa
+                meta:
+                  id: req_04fa9a0605b14529a842477971ad25b9
+                  created: 1755028484069
+                  modified: 1755028692040
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755028484069
+                method: PATCH
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                      "status": "CONCLUIDA"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/tarefas/vencidas
+                name: Lista tarefas vencidas
+                meta:
+                  id: req_e56a71f08a214776a0f0d079157a5171
+                  created: 1755028785031
+                  modified: 1755028841411
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755028785031
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/tarefas/3
+                name: Deletar tarefa
+                meta:
+                  id: req_e1b00d67da7a46718f33721f09cd3fc4
+                  created: 1755047997074
+                  modified: 1755048087970
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755047997074
+                method: DELETE
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: Subtarefa
+            meta:
+              id: fld_24320454f67548c5b2237270691e120d
+              created: 1755030199586
+              modified: 1755030199586
+              sortKey: -1755030199586
+              description: ""
+            children:
+              - url: http://localhost:8080/api/subtarefas/tarefa/1
+                name: Criando subtarefa
+                meta:
+                  id: req_15ec37c702564ff795be50031e705197
+                  created: 1755047725240
+                  modified: 1755049779536
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755047725240
+                method: POST
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                      "titulo": "Ajustar configurações do novo banco de dados",
+                      "status": "PENDENTE"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/subtarefas/1
+                name: Buscar subtarefa por id
+                meta:
+                  id: req_95205e332b064368a6804969ddee1cc8
+                  created: 1755048113087
+                  modified: 1755048209809
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755048113087
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/subtarefas/1
+                name: atualizar subtarefa por id
+                meta:
+                  id: req_e311870045a04f61a94e45344bca9f86
+                  created: 1755048589994
+                  modified: 1755048649908
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755048589994
+                method: PUT
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                      "titulo": "Criar testes unitários - Atualizada",
+                      "status": "CONCLUIDA"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/subtarefas/3
+                name: Deletar Subtarefa
+                meta:
+                  id: req_03ffdb3ac1fe41889fe39060ef3ccbc8
+                  created: 1755048708051
+                  modified: 1755049525292
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755048708051
+                method: DELETE
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/subtarefas/tarefa/1
+                name: Buscar subtarefas de uma tarefa
+                meta:
+                  id: req_68a0b99dcbfc477faebd5712e609e464
+                  created: 1755048791357
+                  modified: 1755054737008
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755048791357
+                method: GET
+                parameters:
+                  - id: pair_778926afbd8240808eff5c227e712d31
+                    name: page
+                    value: "0"
+                    description: ""
+                    disabled: false
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/subtarefas/4/status
+                name: Atualizar subtarefa
+                meta:
+                  id: req_f90afe677eac472786c14d8f190994d8
+                  created: 1755049553106
+                  modified: 1755049810268
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755049553106
+                method: PATCH
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                      "status": "CONCLUIDA"
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/subtarefas/tarefa/1/count-pendentes
+                name: contar subtarefas pendentes
+                meta:
+                  id: req_02a05d0dff754c2a89be4a3678f76e33
+                  created: 1755049670848
+                  modified: 1755049793811
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755049670848
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+          - name: anexo
+            meta:
+              id: fld_0c7dd62104394236a3b26663356f223d
+              created: 1755055926658
+              modified: 1755055926658
+              sortKey: -1755055926658
+              description: ""
+            children:
+              - url: http://localhost:8080/api/tarefas/1/anexos
+                name: criar anexo
+                meta:
+                  id: req_f795b4ea333c44f5adeef90b560e3469
+                  created: 1755055931657
+                  modified: 1755060345632
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755055931657
+                method: POST
+                body:
+                  mimeType: ""
+                  text: ""
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                    id: pair_96466a82559f4d4caa60b97044e36de5
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/tarefas/1/anexos
+                name: buscar anexos através da tarefa
+                meta:
+                  id: req_01db280fda3c4c12aecb2daf9afe82fc
+                  created: 1755057949851
+                  modified: 1755061405322
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755057949851
+                method: GET
+                body:
+                  mimeType: application/json
+                  text: |-
+                    {
+                    	
+                    }
+                headers:
+                  - name: Content-Type
+                    value: application/json
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/tarefas/1/anexos/3/download
+                name: Dowloan anexo
+                meta:
+                  id: req_7bc1f80805e84f99b59b0a16de5ce9bd
+                  created: 1755061408676
+                  modified: 1755061683544
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755061408676
+                method: GET
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+              - url: http://localhost:8080/api/tarefas/1/anexos/3
+                name: Deletar anexo
+                meta:
+                  id: req_4b89d2bf08854b27ad6a8d820cc67271
+                  created: 1755061629800
+                  modified: 1755061665553
+                  isPrivate: false
+                  description: ""
+                  sortKey: -1755061629800
+                method: DELETE
+                headers:
+                  - name: User-Agent
+                    value: insomnia/11.3.0
+                settings:
+                  renderRequestBody: true
+                  encodeUrl: true
+                  followRedirects: global
+                  cookies:
+                    send: true
+                    store: true
+                  rebuildPath: true
+    scripts:
+      afterResponse: ""
+      preRequest: ""
+  - name: node
+    meta:
+      id: fld_af84edd26c6b4153a5372b30d8cc15f4
+      created: 1752162100209
+      modified: 1754963029871
+      sortKey: -1752162100209
+      description: ""
+    children:
+      - name: health pilot
+        meta:
+          id: fld_d85de769366d4cb483950d3f0fe193eb
+          created: 1752162128398
+          modified: 1752162128398
+          sortKey: -1752162128398
+          description: ""
+        children:
+          - name: auth
+            meta:
+              id: fld_4672e8c6f54b4020b2bcbd2077ac1825
+              created: 1752162140421
+              modified: 1752162140421
+              sortKey: -1752162140421
+              description: ""
+            scripts:
+              afterResponse: ""
+              preRequest: ""
+          - name: admin
+            meta:
+              id: fld_fd3c43a76b7f4c83b01bc7a621c70cb4
+              created: 1752559188890
+              modified: 1752559188890
+              sortKey: -1752559188890
+              description: ""
+            children:
+              - name: professionals
+                meta:
+                  id: fld_fcd8ba74d2834d71b2f50dc00adff75d
+                  created: 1752685357771
+                  modified: 1752685357771
+                  sortKey: -1752685357771
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: infrastructure
+                meta:
+                  id: fld_b7b22f8c007741ae9d9a6f78587092f1
+                  created: 1752685395742
+                  modified: 1752685395742
+                  sortKey: -1752685395742
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: schedule template
+                meta:
+                  id: fld_2a54bd721c444c2b8b0036cf2ed85ab9
+                  created: 1752699142626
+                  modified: 1752706217583
+                  sortKey: -1752699142626
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: time slots
+                meta:
+                  id: fld_0a226ab4ef63464f9a3a12f5133217ef
+                  created: 1752709811929
+                  modified: 1752709811929
+                  sortKey: -1752709811929
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: audit
+                meta:
+                  id: fld_78a830813d994f0980d6ffa058e94b53
+                  created: 1753896553295
+                  modified: 1753896553295
+                  sortKey: -1753896553295
+                  description: ""
+            scripts:
+              afterResponse: ""
+              preRequest: ""
+          - name: secretary
+            meta:
+              id: fld_619fd4c6c7c349abbd7cd12e8afe4777
+              created: 1752720210056
+              modified: 1752720210056
+              sortKey: -1752720210056
+              description: ""
+            children:
+              - name: patient
+                meta:
+                  id: fld_cd23b7ec84ee4090bf974bcba15068ae
+                  created: 1752726461378
+                  modified: 1752726461378
+                  sortKey: -1752726461378
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: responsible
+                meta:
+                  id: fld_ba2ebdd4f8404256af230ca950148266
+                  created: 1752771877866
+                  modified: 1752870829956
+                  sortKey: -1752771877866
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: appointment
+                meta:
+                  id: fld_24e69ab757a9491caf23a2e9e142a153
+                  created: 1752813205502
+                  modified: 1752813205502
+                  sortKey: -1752813205502
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: time slots
+                meta:
+                  id: fld_4e611ff2ef8f4e5d84240cf697731964
+                  created: 1752956488229
+                  modified: 1752956488229
+                  sortKey: -1752956488229
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+            scripts:
+              afterResponse: ""
+              preRequest: ""
+          - name: health care
+            meta:
+              id: fld_6db1e45002464be39a440aab86ccc4db
+              created: 1752870953191
+              modified: 1752936701474
+              sortKey: -1752870953191
+              description: ""
+            children:
+              - name: appointments
+                meta:
+                  id: fld_ea5676f508c843a9b2ab6f484eb3102f
+                  created: 1752936806342
+                  modified: 1752936806342
+                  sortKey: -1752936806342
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+            scripts:
+              afterResponse: ""
+              preRequest: ""
+          - name: shared
+            meta:
+              id: fld_a1bf820202a347fab0a8377f47b7d30c
+              created: 1752936711851
+              modified: 1752936711851
+              sortKey: -1752936711851
+              description: ""
+            children:
+              - name: my infos
+                meta:
+                  id: fld_cce50a09b39e4317bde375e3d64e1e52
+                  created: 1752870856166
+                  modified: 1752936720068
+                  sortKey: -1752936720022
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+              - name: payments
+                meta:
+                  id: fld_a82547b8892845939afc95701c3737da
+                  created: 1752936780400
+                  modified: 1752936780400
+                  sortKey: -1752936780400
+                  description: ""
+                scripts:
+                  afterResponse: ""
+                  preRequest: ""
+            scripts:
+              afterResponse: ""
+              preRequest: ""
+        scripts:
+          afterResponse: ""
+          preRequest: ""
+    scripts:
+      afterResponse: ""
+      preRequest: ""
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1753393957854
+    modified: 1755062022538
+  cookies:
+    - key: access-token
+      value: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkODY0NjhjOC01MDk3LTRiZWEtOWRhYS0wZTFjOGRkYTBmZDgiLCJpc3MiOiJzcHJpbmctdG9kbyIsImF1ZCI6WyJzcHJpbmctdG9kbyJdLCJpYXQiOjE3NTUwNjIwMjIsImV4cCI6MTc1NTA2MjkyMn0.CKkwhK62Mvz_8zsmp0hV38ewyquBOtPXRSJssq7k81-D2cB7mzHl_czCvWeEYmvNAsS1byQEzqsgVWcDvyIWGg
+      maxAge: 900
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-07-25T21:46:35.939Z
+      lastAccessed: 2025-08-13T05:13:42.538Z
+      id: f3f4b7bf-a001-4698-87d2-7b2e24cdbbe7
+    - key: csrf-token
+      value: d257dd8a16ec2ecec9a3618a6ebec48e2f42e4a6a0469d877663f458734740d7
+      maxAge: 86400
+      domain: localhost
+      path: /
+      hostOnly: true
+      creation: 2025-07-25T21:46:35.940Z
+      lastAccessed: 2025-08-07T20:43:09.592Z
+      sameSite: strict
+      id: 6cf1a48d-ffbb-4481-8060-1c6b13eadbfd
+    - key: refresh-token
+      value: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJlZWQyMmY0YS1iOWQyLTQwZjAtYTcxYS03NDA4YzlkMWI1NWYiLCJ0ZW5hbnRJZCI6IjQ0NjdlZjhiLTkyYjItNDUwMy04YzZlLTQ5MTk1M2ZiODgwZCIsImRlc3RpbmF0aW9uIjoiL2F1dGgvcmVmcmVzaC10b2tlbiIsImlhdCI6MTc1Mzk0MTU0NSwiaXNzIjoiY2xpbmljLWdlbml1cyIsImV4cCI6MTc1NDU0NjM0NX0.SFxjWHhAJPvDc3lyYFeYp9D39UD9pJ2om0ElzlGZXj8
+      maxAge: 604800
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-07-25T21:46:35.941Z
+      lastAccessed: 2025-07-31T05:59:05.630Z
+      sameSite: strict
+      id: 5d5db7dd-988d-4166-897f-ee9b53f31270
+    - key: role-selection-token
+      value: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI5Y2MxZjAxOC0yNjkxLTQ5MzYtOThlMS1jM2I0MWJjMmQ2OTciLCJ0ZW5hbnRJZCI6IjQ0NjdlZjhiLTkyYjItNDUwMy04YzZlLTQ5MTk1M2ZiODgwZCIsInNlY3JldFBhdGgiOiJjbGluaWNfdGVzdCIsInJvbGVzIjpbImFwcF9jbGluaWNfYWRtaW4iLCJhcHBfY2xpbmljX2hlYWx0aF9jYXJlIiwiYXBwX2NsaW5pY19zZWNyZXRhcnkiLCJhcHBfY2xpbmljX3N0YWZmIl0sInBsYW5OYW1lIjoiIiwibWF4VXNlcnMiOjAsImNzcmZUb2tlbiI6ImQyNTdkZDhhMTZlYzJlY2VjOWEzNjE4YTZlYmVjNDhlMmY0MmU0YTZhMDQ2OWQ4Nzc2NjNmNDU4NzM0NzQwZDciLCJkZXN0aW5hdGlvbiI6Ii9hdXRoL2Nob3NlLXJvbGUiLCJpYXQiOjE3NTQ1OTkzODksImlzcyI6ImNsaW5pYy1nZW5pdXMiLCJleHAiOjE3NTQ1OTk0NDl9.uuxzQCapari7iYXYjmeVAQGH1DuIJU5Zmi6O8rY_jy4
+      maxAge: 60
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-07-31T04:19:35.504Z
+      lastAccessed: 2025-08-07T20:43:09.591Z
+      sameSite: strict
+      id: cbc87d40-6d34-4dac-98ae-6a434042b1f5
+    - key: access-token
+      maxAge: 0
+      domain: www.agendaki.fun
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-08-07T23:15:36.500Z
+      lastAccessed: 2025-08-07T23:18:16.088Z
+      id: 4b7ab3fa-cc62-4c04-8c26-5435791c9a9b
+    - key: csrf-token
+      maxAge: 0
+      domain: www.agendaki.fun
+      path: /
+      hostOnly: true
+      creation: 2025-08-07T23:15:36.501Z
+      lastAccessed: 2025-08-07T23:18:16.088Z
+      id: 09cbed06-ae21-4ad6-9731-ef0dfa1a6865
+    - key: refresh-token
+      maxAge: 0
+      domain: www.agendaki.fun
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-08-07T23:15:36.501Z
+      lastAccessed: 2025-08-07T23:18:16.088Z
+      id: aa7d28fc-8107-451c-bc74-083bdf3a396a
+    - key: role-selection-token
+      maxAge: 0
+      domain: www.agendaki.fun
+      path: /
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-08-07T23:18:16.088Z
+      lastAccessed: 2025-08-07T23:18:16.088Z
+      id: 8bfb4344-f883-429b-9618-f26c36c750a3
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1753393957758
+    modified: 1753393957758
+    isPrivate: false
