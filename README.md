@@ -12,7 +12,8 @@ Uma API RESTful completa para gerenciamento de tarefas desenvolvida em Java 17 c
 - **PostgreSQL 16** (Banco de dados)
 - **Lombok** (Redução de boilerplate)
 - **SpringDoc OpenAPI** (Documentação Swagger)
-- **Docker & Docker Compose** (Containerização)
+- **Docker & Docker Compose** (Containerização completa)
+- **Multi-stage Docker builds** (Otimização de imagens)
 
 ## 📁 Estrutura do Projeto
 
@@ -21,8 +22,10 @@ to-do-list/
 ├── data-base/                    # Configurações do banco de dados
 │   ├── init-db.sql              # Schema e tabelas
 │   ├── init-sgbd.sql            # Configurações de usuários e roles
+│   ├── init.sql                 # Script de inicialização automática
 │   └── postgres-data/           # Dados persistentes (criado automaticamente)
 ├── spring-todo/                 # Aplicação Spring Boot
+│   ├── Dockerfile               # Configuração Docker multi-stage
 │   ├── src/main/java/
 │   │   └── com/matheusbiesek/todolist/spring_todo/
 │   │       ├── config/          # Configurações (CORS, Security, OpenAPI)
@@ -36,7 +39,8 @@ to-do-list/
 │   │       ├── security/        # Configurações de segurança
 │   │       └── service/         # Lógica de negócio
 │   └── src/main/resources/
-│       └── application.properties
+│       ├── application.properties
+│       └── application-docker.properties  # Configurações Docker
 ├── anexos/                      # Diretório para upload de arquivos
 ├── docker-compose.yml           # Orquestração dos containers
 └── README.md
@@ -77,6 +81,9 @@ to-do-list/
 - **Validações** robustas
 - **Logs** estruturados
 - **Timezone** configurado para Brasil
+- **Containerização completa** com Docker
+- **Multi-stage builds** para otimização de imagens
+- **Configurações específicas** para ambiente Docker
 
 ### 📖 Documentação Swagger
 O projeto possui **documentação automática** da API através do **SpringDoc OpenAPI (Swagger)**:
@@ -116,6 +123,8 @@ mkdir anexos
 docker-compose up -d
 ```
 
+**💡 Nota**: O projeto está totalmente containerizado! A aplicação Spring Boot roda em um container Docker otimizado com configurações específicas para produção.
+
 ### 4. Acesse os serviços
 - **API**: http://localhost:8080
 - **Documentação Swagger**: http://localhost:8080/swagger-ui.html
@@ -145,6 +154,24 @@ docker-compose up -d
 
 ## 🔧 Configurações
 
+### Configurações Docker
+
+#### Dockerfile
+O `spring-todo/Dockerfile` implementa um **multi-stage build** otimizado:
+- **Build stage**: Compila a aplicação com Maven
+- **Runtime stage**: Imagem final leve com JRE 17
+- **Segurança**: Usuário não-root (spring:spring)
+- **Otimização**: Cache de dependências Maven
+- **Configuração**: JVM otimizada para containers
+
+#### Application Docker Properties
+O arquivo `spring-todo/src/main/resources/application-docker.properties` contém:
+- Configurações específicas para ambiente Docker
+- Variáveis de ambiente para flexibilidade
+- Configurações de banco de dados para containers
+- Configurações de upload de arquivos
+- Configurações de JWT e timezone
+
 ### Variáveis de Ambiente
 As configurações principais estão em `spring-todo/src/main/resources/application.properties`:
 
@@ -163,12 +190,33 @@ spring.servlet.multipart.max-request-size=10MB
 app.anexos.diretorio=/home/biesek/projetos/to-do-list/anexos
 ```
 
+**🔧 Configurações Docker** (via variáveis de ambiente):
+```properties
+# Banco de dados (container)
+SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_sgbd:5432/to_do_list_db
+SPRING_DATASOURCE_USERNAME=to_do_list_app
+SPRING_DATASOURCE_PASSWORD=1234
+
+# JPA
+SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+# Anexos
+APP_ANEXOS_DIRETORIO=/app/anexos
+
+# JWT
+JWT_SECRET=MySuperSecretKeyForJWTTokenGenerationThatIsVeryLongAndSecure123456789
+```
+
 ### Docker Compose
 O `docker-compose.yml` configura:
+- **Spring Boot App** na porta 8080 (container otimizado)
 - **PostgreSQL 16** na porta 5432
 - **PgAdmin** na porta 5050
-- **Volumes persistentes** para dados
+- **Volumes persistentes** para dados e anexos
 - **Rede isolada** para comunicação entre serviços
+- **Variáveis de ambiente** configuradas para cada serviço
+- **Dependências** entre serviços configuradas
+- **Restart policy** para alta disponibilidade
 
 ## 📚 Documentação da API
 
