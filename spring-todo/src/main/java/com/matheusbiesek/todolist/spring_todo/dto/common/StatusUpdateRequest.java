@@ -1,4 +1,4 @@
-package com.matheusbiesek.todolist.spring_todo.dto.tarefa;
+package com.matheusbiesek.todolist.spring_todo.dto.common;
 
 import com.matheusbiesek.todolist.spring_todo.enums.StatusTarefa;
 

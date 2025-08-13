@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.matheusbiesek.todolist.spring_todo.dto.tarefa.StatusUpdateRequest;
+import com.matheusbiesek.todolist.spring_todo.dto.common.StatusUpdateRequest;
 import com.matheusbiesek.todolist.spring_todo.dto.tarefa.TarefaCreateRequest;
 import com.matheusbiesek.todolist.spring_todo.dto.tarefa.TarefaResponse;
 import com.matheusbiesek.todolist.spring_todo.dto.tarefa.TarefaUpdateRequest;
