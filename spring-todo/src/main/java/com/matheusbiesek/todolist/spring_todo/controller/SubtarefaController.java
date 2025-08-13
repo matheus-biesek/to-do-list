@@ -211,7 +211,7 @@ public class SubtarefaController {
         Usuario usuario = usuarioService.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        return subtarefaService.findById(id)
+        return subtarefaService.findByIdWithTarefaAndUsuario(id)
                 .filter(subtarefa -> subtarefa.getTarefa().getUsuario().getUsuarioId().equals(userId))
                 .map(subtarefaMapper::toResponse)
                 .map(ResponseEntity::ok)
@@ -416,7 +416,7 @@ public class SubtarefaController {
         Usuario usuario = usuarioService.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        return subtarefaService.findById(id)
+        return subtarefaService.findByIdWithTarefaAndUsuario(id)
                 .filter(subtarefaExistente -> subtarefaExistente.getTarefa().getUsuario().getUsuarioId().equals(userId))
                 .map(subtarefaExistente -> {
                     Subtarefa subtarefaAtualizada = subtarefaMapper.toEntity(request, subtarefaExistente);
@@ -521,7 +521,7 @@ public class SubtarefaController {
         Usuario usuario = usuarioService.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        return subtarefaService.findById(id)
+        return subtarefaService.findByIdWithTarefaAndUsuario(id)
                 .filter(subtarefa -> subtarefa.getTarefa().getUsuario().getUsuarioId().equals(userId))
                 .map(subtarefa -> {
                     Subtarefa subtarefaAtualizada = subtarefaService.updateStatus(id, request.getStatus());
@@ -601,7 +601,7 @@ public class SubtarefaController {
         Usuario usuario = usuarioService.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        return subtarefaService.findById(id)
+        return subtarefaService.findByIdWithTarefaAndUsuario(id)
                 .filter(subtarefa -> subtarefa.getTarefa().getUsuario().getUsuarioId().equals(userId))
                 .map(subtarefa -> {
                     subtarefaService.deleteById(id);

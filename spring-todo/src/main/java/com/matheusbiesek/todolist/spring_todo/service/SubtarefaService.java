@@ -32,6 +32,15 @@ public class SubtarefaService {
     }
 
     @Transactional(readOnly = true)
+    public Optional<Subtarefa> findByIdWithTarefaAndUsuario(Long id) {
+        try {
+            return subtarefaRepository.findByIdWithTarefaAndUsuario(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar subtarefa com tarefa e usuário: " + e.getMessage(), e);
+        }
+    }
+
+    @Transactional(readOnly = true)
     public List<Subtarefa> findByTarefa(Tarefa tarefa) {
         try {
             return subtarefaRepository.findByTarefa(tarefa);
