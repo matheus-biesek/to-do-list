@@ -1,4 +1,25 @@
 services:
+  spring-todo-app:
+    build:
+      context: ./spring-todo
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_sgbd:5432/to_do_list_db
+      - SPRING_DATASOURCE_USERNAME=to_do_list_app
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - APP_ANEXOS_DIRETORIO=/app/anexos
+      - JWT_SECRET=MySuperSecretKeyForJWTTokenGenerationThatIsVeryLongAndSecure123456789
+    volumes:
+      - ./anexos:/app/anexos:rw
+    depends_on:
+      - postgres_sgbd
+    networks:
+      - app-network
+    restart: unless-stopped
+
   pgadmin:
     image: dpage/pgadmin4
     environment:
@@ -18,10 +39,12 @@ services:
     environment:
       POSTGRES_USER: sys_dba_master
       POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: to_do_list_db
       TZ: America/Sao_Paulo
       PGTZ: America/Sao_Paulo
     volumes:
       - ./data-base/postgres-data:/var/lib/postgresql/data
+      - ./data-base/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
 
