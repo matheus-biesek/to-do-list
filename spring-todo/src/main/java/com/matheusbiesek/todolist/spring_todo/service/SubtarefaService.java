@@ -5,6 +5,8 @@ import com.matheusbiesek.todolist.spring_todo.entity.Tarefa;
 import com.matheusbiesek.todolist.spring_todo.enums.StatusTarefa;
 import com.matheusbiesek.todolist.spring_todo.repository.SubtarefaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,6 +57,24 @@ public class SubtarefaService {
             return subtarefaRepository.findByTarefaAndStatus(tarefa, status);
         } catch (Exception e) {
             throw new RuntimeException("Erro ao buscar subtarefas por status: " + e.getMessage(), e);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Subtarefa> findByTarefa(Tarefa tarefa, Pageable pageable) {
+        try {
+            return subtarefaRepository.findByTarefa(tarefa, pageable);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar subtarefas paginadas da tarefa: " + e.getMessage(), e);
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Subtarefa> findByTarefaAndStatus(Tarefa tarefa, StatusTarefa status, Pageable pageable) {
+        try {
+            return subtarefaRepository.findByTarefaAndStatus(tarefa, status, pageable);
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar subtarefas paginadas por status: " + e.getMessage(), e);
         }
     }
 

@@ -1,9 +1,11 @@
 package com.matheusbiesek.todolist.spring_todo.controller;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -54,8 +56,8 @@ public class SubtarefaController {
 
     @GetMapping("/tarefa/{tarefaId}")
     @Operation(
-        summary = "Listar subtarefas de uma tarefa", 
-        description = "Recupera todas as subtarefas associadas a uma tarefa específica do usuário autenticado. " +
+        summary = "Listar subtarefas de uma tarefa com paginação", 
+        description = "Recupera todas as subtarefas associadas a uma tarefa específica do usuário autenticado com suporte a paginação. " +
                      "Permite filtrar opcionalmente por status para visualizar apenas subtarefas em determinado estado."
     )
     @ApiResponses(value = {
@@ -64,12 +66,13 @@ public class SubtarefaController {
             description = "Lista de subtarefas recuperada com sucesso",
             content = @Content(
                 mediaType = "application/json",
-                schema = @Schema(implementation = SubtarefaResponse.class),
+                schema = @Schema(implementation = Page.class),
                 examples = @ExampleObject(
-                    name = "Lista de subtarefas",
-                    value = "[{\"subtarefaId\":1,\"tarefaId\":10,\"titulo\":\"Criar testes unitários\"," +
+                    name = "Lista paginada de subtarefas",
+                    value = "{\"content\":[{\"subtarefaId\":1,\"tarefaId\":10,\"titulo\":\"Criar testes unitários\"," +
                            "\"status\":\"PENDENTE\",\"criadoEm\":\"2024-08-13T10:30:00\"," +
-                           "\"atualizadoEm\":\"2024-08-13T10:30:00\"}]"
+                           "\"atualizadoEm\":\"2024-08-13T10:30:00\"}],\"pageable\":{\"pageNumber\":0,\"pageSize\":10}," +
+                           "\"totalElements\":1,\"totalPages\":1,\"first\":true,\"last\":true}"
                 )
             )
         ),
@@ -107,7 +110,7 @@ public class SubtarefaController {
             )
         )
     })
-    public ResponseEntity<List<SubtarefaResponse>> listarSubtarefasPorTarefa(
+    public ResponseEntity<Page<SubtarefaResponse>> listarSubtarefasPorTarefa(
             @Parameter(
                 name = "tarefaId",
                 description = "ID único da tarefa para listar suas subtarefas",
@@ -124,20 +127,60 @@ public class SubtarefaController {
                 example = "PENDENTE",
                 schema = @Schema(implementation = StatusTarefa.class)
             )
-            @RequestParam(required = false) StatusTarefa status) {
+            @RequestParam(required = false) StatusTarefa status,
+            
+            @Parameter(
+                name = "page",
+                description = "Número da página (inicia em 0)",
+                required = false,
+                example = "0",
+                schema = @Schema(type = "integer", minimum = "0")
+            )
+            @RequestParam(defaultValue = "0") int page,
+            
+            @Parameter(
+                name = "size",
+                description = "Tamanho da página",
+                required = false,
+                example = "10",
+                schema = @Schema(type = "integer", minimum = "1", maximum = "100")
+            )
+            @RequestParam(defaultValue = "10") int size,
+            
+            @Parameter(
+                name = "sortBy",
+                description = "Campo para ordenação (criadoEm, titulo, status)",
+                required = false,
+                example = "criadoEm",
+                schema = @Schema(type = "string")
+            )
+            @RequestParam(defaultValue = "criadoEm") String sortBy,
+            
+            @Parameter(
+                name = "sortDir",
+                description = "Direção da ordenação (ASC ou DESC)",
+                required = false,
+                example = "DESC",
+                schema = @Schema(type = "string", allowableValues = {"ASC", "DESC"})
+            )
+            @RequestParam(defaultValue = "DESC") String sortDir) {
         
         UUID userId = UserContext.getUserId();
         Usuario usuario = usuarioService.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+        Sort sort = sortDir.equalsIgnoreCase("DESC")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+        
+        Pageable pageable = PageRequest.of(page, size, sort);
+
         return tarefaService.findByIdAndUsuario(tarefaId, usuario)
                 .map(tarefa -> {
-                    List<Subtarefa> subtarefas = status != null 
-                        ? subtarefaService.findByTarefaAndStatus(tarefa, status)
-                        : subtarefaService.findByTarefa(tarefa);
-                    List<SubtarefaResponse> response = subtarefas.stream()
-                            .map(subtarefaMapper::toResponse)
-                            .collect(Collectors.toList());
+                    Page<Subtarefa> subtarefas = status != null 
+                        ? subtarefaService.findByTarefaAndStatus(tarefa, status, pageable)
+                        : subtarefaService.findByTarefa(tarefa, pageable);
+                    Page<SubtarefaResponse> response = subtarefas.map(subtarefaMapper::toResponse);
                     return ResponseEntity.ok(response);
                 })
                 .orElse(ResponseEntity.notFound().build());
