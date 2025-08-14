@@ -13,6 +13,7 @@ Uma API RESTful completa para gerenciamento de tarefas desenvolvida em Java 17 c
 - **Lombok** (Redução de boilerplate)
 - **SpringDoc OpenAPI** (Documentação Swagger)
 - **Docker & Docker Compose** (Containerização)
+- **JUnit & Mockito** (testes)
 
 ## 📁 Estrutura do Projeto
 
